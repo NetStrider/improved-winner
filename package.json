@@ -1,0 +1,22 @@
+{
+  "name": "improved-winner",
+  "version": "1.0.0",
+  "description": "building a babylon js web game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babylonjs/core": "^8.39.0",
+    "@babylonjs/gui": "^8.39.0",
+    "@babylonjs/loaders": "^8.39.0",
+    "@babylonjs/materials": "^8.39.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
+  }
+}
