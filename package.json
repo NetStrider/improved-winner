@@ -1,0 +1,25 @@
+{
+  "name": "improved-winner",
+  "version": "1.0.0",
+  "description": "A Babylon.js web-based multiplayer game with cross-play support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test/server.test.js"
+  },
+  "keywords": [
+    "babylon.js",
+    "multiplayer",
+    "game",
+    "websocket",
+    "cross-play"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "uuid": "^13.0.0",
+    "ws": "^8.18.3"
+  }
+}
