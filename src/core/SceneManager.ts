@@ -9,8 +9,6 @@ import {
   StandardMaterial,
   Color3,
   Color4,
-  Texture,
-  CubeTexture,
 } from '@babylonjs/core';
 
 /**

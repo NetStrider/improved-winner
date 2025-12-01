@@ -1,12 +1,23 @@
 {
-  "name": "improved-winner",
+  "name": "survival-shooter",
   "version": "1.0.0",
-  "description": "building a babylon js web game",
-  "main": "index.js",
+  "description": "A 3D survival shooter game built with BabylonJS - supports PC, Mobile, and VR with co-op multiplayer",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
   },
-  "keywords": [],
+  "keywords": [
+    "babylonjs",
+    "game",
+    "3d",
+    "shooter",
+    "vr",
+    "webxr",
+    "multiplayer"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -1,9 +1,7 @@
 import { 
-  Scene, 
   Vector3, 
   WebXRDefaultExperience,
   WebXRInputSource,
-  WebXRControllerComponent,
 } from '@babylonjs/core';
 import { InputAction } from './PCInputManager';
 
@@ -11,7 +9,6 @@ import { InputAction } from './PCInputManager';
  * VRInputManager - Handles VR controller input
  */
 export class VRInputManager {
-  private scene: Scene;
   private xrExperience: WebXRDefaultExperience;
   
   private actionStates: Map<InputAction, boolean> = new Map();
@@ -22,8 +19,7 @@ export class VRInputManager {
   
   private movementDirection: Vector3 = Vector3.Zero();
 
-  constructor(scene: Scene, xrExperience: WebXRDefaultExperience) {
-    this.scene = scene;
+  constructor(_scene: unknown, xrExperience: WebXRDefaultExperience) {
     this.xrExperience = xrExperience;
     
     this.setupControllers();

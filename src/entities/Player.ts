@@ -4,7 +4,6 @@ import {
   UniversalCamera, 
   TransformNode,
   Ray,
-  RayHelper,
   Color3,
   Mesh,
   MeshBuilder,
@@ -265,9 +264,8 @@ export class Player {
       direction = this.camera.getDirection(Vector3.Forward());
     }
     
-    // Perform raycast
-    const ray = new Ray(origin, direction, 100);
-    const hit = this.scene.pickWithRay(ray);
+    // Perform raycast (for future hit detection expansion)
+    new Ray(origin, direction, 100);
     
     // Trigger callback
     if (this.onShoot) {

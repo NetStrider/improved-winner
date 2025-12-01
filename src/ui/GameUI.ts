@@ -4,15 +4,12 @@ import {
   TextBlock, 
   Rectangle,
   Control,
-  StackPanel,
-  Button,
 } from '@babylonjs/gui';
 
 /**
  * GameUI - Heads-up display for the game
  */
 export class GameUI {
-  private scene: Scene;
   private ui: AdvancedDynamicTexture;
   
   // UI elements
@@ -29,7 +26,6 @@ export class GameUI {
   private messageTimeout: number | null = null;
 
   constructor(scene: Scene) {
-    this.scene = scene;
     this.ui = AdvancedDynamicTexture.CreateFullscreenUI('gameUI', true, scene);
     
     this.createHUD();

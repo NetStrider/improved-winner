@@ -1,4 +1,5 @@
 import { Engine, Scene, WebXRDefaultExperience, WebXRState } from '@babylonjs/core';
+import '@babylonjs/core/XR/webXRDefaultExperience';
 
 /**
  * GameEngine - Core engine wrapper for BabylonJS
@@ -56,8 +57,13 @@ export class GameEngine {
    */
   public async initVR(): Promise<WebXRDefaultExperience | null> {
     try {
-      // Check if WebXR is available
-      const isSupported = await WebXRDefaultExperience.IsVRSupported(this.scene);
+      // Check if WebXR is available via navigator
+      if (!navigator.xr) {
+        console.warn('WebXR is not supported on this browser');
+        return null;
+      }
+
+      const isSupported = await navigator.xr.isSessionSupported('immersive-vr');
       if (!isSupported) {
         console.warn('WebXR VR is not supported on this device');
         return null;

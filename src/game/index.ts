@@ -1,1 +1,2 @@
-export { WaveManager, WaveConfig } from './WaveManager';
+export { WaveManager } from './WaveManager';
+export type { WaveConfig } from './WaveManager';

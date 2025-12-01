@@ -4,7 +4,6 @@ import {
   Ellipse, 
   Button, 
   Control,
-  Rectangle,
 } from '@babylonjs/gui';
 import { InputAction } from './PCInputManager';
 

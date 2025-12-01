@@ -175,7 +175,7 @@ export class WaveManager {
       }
     };
     
-    enemy.onAttack = (e, damage) => {
+    enemy.onAttack = (_e, _damage) => {
       // This will be connected to player damage in the game
     };
     

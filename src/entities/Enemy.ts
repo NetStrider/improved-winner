@@ -37,7 +37,6 @@ export class Enemy {
   
   // Stats
   private health: number;
-  private maxHealth: number;
   private damage: number;
   private speed: number;
   private attackRange: number = 2;
@@ -45,7 +44,6 @@ export class Enemy {
   private attackRate: number = 1; // seconds between attacks
   
   // AI
-  private targetPosition: Vector3 | null = null;
   private detectionRange: number = 30;
   private isActive: boolean = true;
 
@@ -64,7 +62,6 @@ export class Enemy {
     // Set stats based on type
     const stats = this.getStatsByType(type);
     this.health = stats.health;
-    this.maxHealth = stats.health;
     this.damage = stats.damage;
     this.speed = stats.speed;
     
