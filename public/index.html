@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cross-Play Multiplayer Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow: hidden;
+            touch-action: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #renderCanvas {
+            width: 100%;
+            height: 100vh;
+            display: block;
+            touch-action: none;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            z-index: 100;
+        }
+        
+        #scoreboard {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            z-index: 100;
+            max-width: 200px;
+        }
+        
+        #scoreboard h3 {
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .player-score {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            padding: 3px;
+            border-radius: 3px;
+        }
+        
+        .player-score.self {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .player-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .platform-badge {
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        
+        #mobile-controls {
+            display: none;
+        }
+        
+        #joystick-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            z-index: 100;
+        }
+        
+        #joystick {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            z-index: 100;
+            text-align: center;
+        }
+        
+        #connection-status {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            z-index: 100;
+        }
+        
+        .status-connected { color: #4caf50; }
+        .status-disconnected { color: #f44336; }
+        .status-connecting { color: #ff9800; }
+        
+        @media (max-width: 768px) {
+            #mobile-controls {
+                display: block;
+            }
+            
+            #instructions {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Babylon.js CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    
+    <div id="ui">
+        <h2>🎮 Cross-Play Arena</h2>
+        <p id="player-info"></p>
+    </div>
+    
+    <div id="connection-status">
+        <span class="status-connecting">⏳ Connecting...</span>
+    </div>
+    
+    <div id="scoreboard">
+        <h3>🏆 Scoreboard</h3>
+        <div id="scores"></div>
+    </div>
+    
+    <div id="instructions">
+        <strong>Controls:</strong> WASD or Arrow Keys to move | Collect golden orbs for points!
+    </div>
+    
+    <div id="mobile-controls">
+        <div id="joystick-container">
+            <div id="joystick"></div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
