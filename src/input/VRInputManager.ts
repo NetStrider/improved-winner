@@ -1,4 +1,5 @@
 import { 
+  Scene,
   Vector3, 
   WebXRDefaultExperience,
   WebXRInputSource,
@@ -19,7 +20,7 @@ export class VRInputManager {
   
   private movementDirection: Vector3 = Vector3.Zero();
 
-  constructor(_scene: unknown, xrExperience: WebXRDefaultExperience) {
+  constructor(_scene: Scene, xrExperience: WebXRDefaultExperience) {
     this.xrExperience = xrExperience;
     
     this.setupControllers();

@@ -3,7 +3,6 @@ import {
   Vector3, 
   UniversalCamera, 
   TransformNode,
-  Ray,
   Color3,
   Mesh,
   MeshBuilder,
@@ -264,10 +263,7 @@ export class Player {
       direction = this.camera.getDirection(Vector3.Forward());
     }
     
-    // Perform raycast (for future hit detection expansion)
-    new Ray(origin, direction, 100);
-    
-    // Trigger callback
+    // Trigger callback with ray origin and direction for hit detection
     if (this.onShoot) {
       this.onShoot(origin, direction);
     }

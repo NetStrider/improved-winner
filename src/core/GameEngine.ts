@@ -57,8 +57,8 @@ export class GameEngine {
    */
   public async initVR(): Promise<WebXRDefaultExperience | null> {
     try {
-      // Check if WebXR is available via navigator
-      if (!navigator.xr) {
+      // Check if WebXR is available via navigator (with proper type guard)
+      if (!('xr' in navigator) || !navigator.xr) {
         console.warn('WebXR is not supported on this browser');
         return null;
       }
