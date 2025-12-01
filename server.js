@@ -4,6 +4,12 @@ const WebSocket = require('ws');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
+// Game constants
+const RGB_COLOR_MAX = 0xFFFFFF;
+const PLAYER_SPAWN_RANGE = 20;
+const COLLECTIBLE_SPAWN_RANGE = 40;
+const INITIAL_COLLECTIBLES = 10;
+
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -21,12 +27,12 @@ const gameState = {
 // Initialize collectibles
 function initCollectibles() {
     gameState.collectibles = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < INITIAL_COLLECTIBLES; i++) {
         gameState.collectibles.push({
             id: uuidv4(),
-            x: (Math.random() - 0.5) * 40,
+            x: (Math.random() - 0.5) * COLLECTIBLE_SPAWN_RANGE,
             y: 1,
-            z: (Math.random() - 0.5) * 40
+            z: (Math.random() - 0.5) * COLLECTIBLE_SPAWN_RANGE
         });
     }
 }
@@ -46,14 +52,14 @@ function broadcast(message, exclude = null) {
 // Handle WebSocket connections
 wss.on('connection', (ws) => {
     const playerId = uuidv4();
-    const playerColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+    const playerColor = `#${Math.floor(Math.random() * RGB_COLOR_MAX).toString(16).padStart(6, '0')}`;
     
     // Create new player
     const player = {
         id: playerId,
-        x: (Math.random() - 0.5) * 10,
+        x: (Math.random() - 0.5) * PLAYER_SPAWN_RANGE,
         y: 1,
-        z: (Math.random() - 0.5) * 10,
+        z: (Math.random() - 0.5) * PLAYER_SPAWN_RANGE,
         color: playerColor,
         platform: 'unknown'
     };
@@ -111,9 +117,9 @@ wss.on('connection', (ws) => {
                         // Spawn new collectible
                         const newCollectible = {
                             id: uuidv4(),
-                            x: (Math.random() - 0.5) * 40,
+                            x: (Math.random() - 0.5) * COLLECTIBLE_SPAWN_RANGE,
                             y: 1,
-                            z: (Math.random() - 0.5) * 40
+                            z: (Math.random() - 0.5) * COLLECTIBLE_SPAWN_RANGE
                         };
                         gameState.collectibles.push(newCollectible);
                         

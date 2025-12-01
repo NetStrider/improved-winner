@@ -1,5 +1,11 @@
 // Cross-Play Multiplayer Game Client
 
+// Game constants
+const ARENA_SIZE = 25;
+const ARENA_BOUNDARY = ARENA_SIZE - 1;
+const ANIMATION_FPS = 60;
+const ANIMATION_DURATION = 6;
+
 class MultiplayerGame {
     constructor() {
         this.canvas = document.getElementById('renderCanvas');
@@ -125,17 +131,16 @@ class MultiplayerGame {
     createBoundary() {
         const wallHeight = 2;
         const wallThickness = 0.5;
-        const arenaSize = 25;
         
         const wallMat = new BABYLON.StandardMaterial('wallMat', this.scene);
         wallMat.diffuseColor = new BABYLON.Color3(0.3, 0.3, 0.5);
         wallMat.alpha = 0.5;
         
         const walls = [
-            { pos: [0, wallHeight / 2, arenaSize], size: [arenaSize * 2, wallHeight, wallThickness] },
-            { pos: [0, wallHeight / 2, -arenaSize], size: [arenaSize * 2, wallHeight, wallThickness] },
-            { pos: [arenaSize, wallHeight / 2, 0], size: [wallThickness, wallHeight, arenaSize * 2] },
-            { pos: [-arenaSize, wallHeight / 2, 0], size: [wallThickness, wallHeight, arenaSize * 2] }
+            { pos: [0, wallHeight / 2, ARENA_SIZE], size: [ARENA_SIZE * 2, wallHeight, wallThickness] },
+            { pos: [0, wallHeight / 2, -ARENA_SIZE], size: [ARENA_SIZE * 2, wallHeight, wallThickness] },
+            { pos: [ARENA_SIZE, wallHeight / 2, 0], size: [wallThickness, wallHeight, ARENA_SIZE * 2] },
+            { pos: [-ARENA_SIZE, wallHeight / 2, 0], size: [wallThickness, wallHeight, ARENA_SIZE * 2] }
         ];
         
         walls.forEach((wall, i) => {
@@ -435,8 +440,8 @@ class MultiplayerGame {
                         'moveAnim',
                         moved.mesh,
                         'position',
-                        60,
-                        6,
+                        ANIMATION_FPS,
+                        ANIMATION_DURATION,
                         moved.mesh.position,
                         new BABYLON.Vector3(message.x, message.y, message.z),
                         BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
@@ -497,9 +502,8 @@ class MultiplayerGame {
             const newX = this.playerMesh.position.x + dx;
             const newZ = this.playerMesh.position.z + dz;
             
-            // Boundary check
-            const boundary = 24;
-            if (Math.abs(newX) < boundary && Math.abs(newZ) < boundary) {
+            // Boundary check using arena boundary constant
+            if (Math.abs(newX) < ARENA_BOUNDARY && Math.abs(newZ) < ARENA_BOUNDARY) {
                 this.playerMesh.position.x = newX;
                 this.playerMesh.position.z = newZ;
                 
