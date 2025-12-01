@@ -1,0 +1,33 @@
+{
+  "name": "survival-shooter",
+  "version": "1.0.0",
+  "description": "A 3D survival shooter game built with BabylonJS - supports PC, Mobile, and VR with co-op multiplayer",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "babylonjs",
+    "game",
+    "3d",
+    "shooter",
+    "vr",
+    "webxr",
+    "multiplayer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babylonjs/core": "^8.39.0",
+    "@babylonjs/gui": "^8.39.0",
+    "@babylonjs/loaders": "^8.39.0",
+    "@babylonjs/materials": "^8.39.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
+  }
+}
